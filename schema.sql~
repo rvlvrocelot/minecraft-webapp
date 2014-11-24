@@ -15,9 +15,9 @@ create table users (
 );
 
 Insert into users (username, pass)
-values ("Andrew","566389c28abc48e488ac56d57fc338fa");
+values ("Andrew","47a2228020ec2e5795a2d135e66bf255");
 Insert into users (username, pass)
-values ("Justin","3717a626cab4016cb5066212cd97b189");
+values ("Justin","3ad0b002b4ffc9662a42dde592b63b7b");
 
 
 drop table if exists announcements;

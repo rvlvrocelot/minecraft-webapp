@@ -7,8 +7,8 @@ from flask_bootstrap import Bootstrap
 import hashlib
 
 # configuration
-# the database is not in tmp on the deployed verson 
-DATABASE = '/minecraft.db'
+# the database is not in tmp on the deployed verson
+DATABASE = '/home/rvlvrocelot/minecraft.db'
 DEBUG = True
 SECRET_KEY = 'development key'
 USERNAME = 'admin'
@@ -92,11 +92,9 @@ def login():
 def logout():
     session.pop('logged_in', None)
     flash('You were logged out')
-    return redirect(url_for('show_entries'))
+    return redirect(url_for('home'))
 
 
 if __name__ == '__main__':
     app.run()
-
-
 

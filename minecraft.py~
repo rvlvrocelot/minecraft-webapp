@@ -8,7 +8,7 @@ import hashlib
 
 # configuration
 # the database is not in tmp on the deployed verson 
-DATABASE = '/tmp/minecraft.db'
+DATABASE = '/minecraft.db'
 DEBUG = True
 SECRET_KEY = 'development key'
 USERNAME = 'admin'

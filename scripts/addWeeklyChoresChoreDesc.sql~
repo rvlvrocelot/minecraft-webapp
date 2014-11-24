@@ -1,0 +1,69 @@
+drop table if exists weeklyChores;
+create table weeklyChores (
+  id integer primary key autoincrement,
+  person text not null,
+  choreid integer not null,
+  completed int not null
+);
+
+drop table if exists choreList;
+create table choreList (
+  id integer primary key autoincrement,
+  choreid integer not null,
+  choreSub text not null,
+  subComplete text not null
+);
+
+drop table if exists choreDesc;
+create table choreDesc (
+  id integer primary key autoincrement,
+  choreid integer not null,
+  desc text not null
+);
+
+Insert into weeklyChores (person, choreid, completed)
+values("Ryder",0, 0);
+Insert into weeklyChores (person, choreid, completed)
+values("Andrew",1, 0);
+Insert into weeklyChores (person, choreid, completed)
+values("Anita",2, 0);
+
+Insert into choreDesc(choreid,desc)
+values(0,"Kitchen Duty");
+Insert into choreDesc(choreid,desc)
+values(1,"Bathroom Duty");
+Insert into choreDesc(choreid,desc)
+values(2,"Livingroom Duty");
+
+Insert into choreList (choreid, choreSub)
+values(0, "Clean kitchen counter");
+Insert into choreList (choreid, choreSub)
+values(0, "Clean stove top");
+Insert into choreList (choreid, choreSub)
+values(0, "Clear expired food from fridge");
+Insert into choreList (choreid, choreSub)
+values(0, "Clean Microwave");
+
+Insert into choreList (choreid, choreSub)
+values(1, "Clean bathroom counter top");
+Insert into choreList (choreid, choreSub)
+values(1, "Clean toilet");
+Insert into choreList (choreid, choreSub)
+values(1, "Clean tub");
+Insert into choreList (choreid, choreSub)
+values(1, "Ensure bathroom floor is clean");
+
+Insert into choreList (choreid, choreSub)
+values(2, "Sweep living room floors");
+Insert into choreList (choreid, choreSub)
+values(2, "Dust coffee table");
+Insert into choreList (choreid, choreSub)
+values(2, "Wipe down kitchen table");
+Insert into choreList (choreid, choreSub)
+values(2, "Take out trash (Monday or Tuesday)");
+Insert into choreList (choreid, choreSub)
+values(2, "Take out trash (Wednesday or Thursday)");
+Insert into choreList (choreid, choreSub)
+values(2, "Take out trash (Friday or Saturday)");
+
+

@@ -7,8 +7,8 @@ from flask_bootstrap import Bootstrap
 import hashlib
 
 # configuration
-# the database is not in tmp on the deployed verson 
-DATABASE = '/minecraft.db'
+# the database is not in tmp on the deployed verson
+DATABASE = '/home/rvlvrocelot/minecraft.db'
 DEBUG = True
 SECRET_KEY = 'development key'
 USERNAME = 'admin'
@@ -49,7 +49,7 @@ def teardown_request(exception):
 #Load the homepage where the announcements are displayed
 @app.route('/')
 def home():
-    cur = g.db.execute('SELECT announcement, details, id, user, Timestamp FROM announcements ORDER BY id DESC LIMIT 5')
+    cur = g.db.execute('SELECT announcement, details, id, user, b.nation Timestamp FROM announcements JOIN users as b ON announcements.user = b.user ORDER BY id DESC LIMIT 5')
     entries = [dict(announcement=row[0], details=row[1],  key=row[2], user = row[3], timestamp = row[4]) for row in cur.fetchall()]
     return render_template('home.html', entries=entries)
 
@@ -92,11 +92,9 @@ def login():
 def logout():
     session.pop('logged_in', None)
     flash('You were logged out')
-    return redirect(url_for('show_entries'))
+    return redirect(url_for('home'))
 
 
 if __name__ == '__main__':
     app.run()
-
-
 

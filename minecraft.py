@@ -66,7 +66,7 @@ def add_announcement():
 
 @app.route('/laws/<path:filename>')
 def laws(filename):
-	return send_from_directory('/static/', filename)
+	return send_from_directory('/home/rvlvrocelot/minecraft-webapp/static/', filename)
 
 
 #login and set the session name

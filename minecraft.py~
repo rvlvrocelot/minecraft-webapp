@@ -65,7 +65,7 @@ def add_announcement():
     return redirect(url_for('home'))
 
 @app.route('/laws/<path:filename>')
-def laws(path):
+def laws(filename):
 	return send_from_directory('/static/', filename)
 
 

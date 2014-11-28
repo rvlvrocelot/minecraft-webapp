@@ -64,6 +64,10 @@ def add_announcement():
     flash('New entry was successfully posted')
     return redirect(url_for('home'))
 
+@app.route('/laws/<path:filename>')
+def laws(path):
+	return send_from_directory('/static/', filename)
+
 
 #login and set the session name
 @app.route('/login', methods=['GET', 'POST'])

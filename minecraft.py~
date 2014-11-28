@@ -64,7 +64,7 @@ def add_announcement():
     flash('New entry was successfully posted')
     return redirect(url_for('home'))
 
-@app.route('/laws/<path:path>')
+@app.route('/laws/<path:filename>')
 def laws(path):
 	return send_from_directory('/static/', filename)
 

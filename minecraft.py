@@ -69,11 +69,11 @@ def laws(filename):
 	return send_from_directory('/home/rvlvrocelot/minecraft-webapp/static/', filename)
 
 @app.route('/commute')
-def commute:
+def commute():
     return render_template('commute.html', entries=entries)
 
 @app.route('/commutedata')
-def data:
+def data():
     cur = g.db.execute('SELECT commuteTime, commment, Timestamp, id FROM commute')
     entries = [dict(commute=row[0], commment=row[1],  timestamp=row[2], id=row[3]) for row in cur.fetchall()]
     return json.dumps([{"_id": i["id"], "commuteTime": i["commute"], "comment": i["comment"], "date": i["timestamp"]} for i in entries])
@@ -81,11 +81,11 @@ def data:
 
 
 @app.route('/commutelog')
-def commutelog:
+def commutelog():
     pass
 
 @app.route('/commuteupdate')
-def commuteupdate:
+def commuteupdate():
     if not session.get('logged_in'):
         abort(401)
     g.db.execute('INSERT INTO commute (commuteTime, comment) VALUES (?, ?)',

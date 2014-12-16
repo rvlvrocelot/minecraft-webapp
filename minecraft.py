@@ -75,7 +75,7 @@ def commute():
 
 @app.route('/commutedata')
 def data():
-    cur = g.db.execute('SELECT commuteTime, comment, Timestamp, id FROM commute')
+    cur = g.db.execute('SELECT commuteTime, comment, Timestamp, id, trip FROM commute')
     entries = [dict(commute=row[0], comment=row[1],  timestamp=row[2], id=row[3], trip=row[4]) for row in cur.fetchall()]
     return json.dumps([{"_id": i["id"], "commuteTime": i["commute"], "comment": i["comment"], "date": i["timestamp"], "trip": i["trip"]} for i in entries])
 

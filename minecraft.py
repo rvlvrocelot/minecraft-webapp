@@ -32,7 +32,7 @@ def init_db():
 def runScript(scriptName):
     with closing(connect_db()) as db:
         with app.open_resource('scripts/' + scriptName, mode='r') as f:
-            db.cursor().executescript(f.read())
+            db.cursor().executescript(f.read()) 
         db.commit()
 
 
@@ -67,6 +67,32 @@ def add_announcement():
 @app.route('/laws/<path:filename>')
 def laws(filename):
 	return send_from_directory('/home/rvlvrocelot/minecraft-webapp/static/', filename)
+
+@app.route('/commute')
+def commute:
+    return render_template('commute.html', entries=entries)
+
+@app.route('/commutedata')
+def data:
+    cur = g.db.execute('SELECT commuteTime, commment, Timestamp, id FROM commute')
+    entries = [dict(commute=row[0], commment=row[1],  timestamp=row[2], id=row[3]) for row in cur.fetchall()]
+    return json.dumps([{"_id": i["id"], "commuteTime": i["commute"], "comment": i["comment"], "date": i["timestamp"]} for i in entries])
+
+
+
+@app.route('/commutelog')
+def commutelog:
+    pass
+
+@app.route('/commuteupdate')
+def commuteupdate:
+    if not session.get('logged_in'):
+        abort(401)
+    g.db.execute('INSERT INTO commute (commuteTime, comment) VALUES (?, ?)',
+                 [request.form['commuteTime'], request.form['comment']])
+    g.db.commit()
+    flash('New entry was successfully posted')
+    return redirect(url_for('commute'))
 
 
 #login and set the session name

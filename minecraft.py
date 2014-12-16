@@ -75,9 +75,9 @@ def commute():
 
 @app.route('/commutedata')
 def data():
-    cur = g.db.execute('SELECT commuteTime, comment, Timestamp, id, trip FROM commute')
-    entries = [dict(commute=row[0], comment=row[1],  timestamp=row[2], id=row[3], trip=row[4]) for row in cur.fetchall()]
-    return json.dumps([{"_id": i["id"], "commuteTime": i["commute"], "comment": i["comment"], "date": i["timestamp"], "trip": i["trip"]} for i in entries])
+    cur = g.db.execute('SELECT commuteTime, comment, Timestamp, id, trip, train FROM commute')
+    entries = [dict(commute=row[0], comment=row[1],  timestamp=row[2], id=row[3], trip=row[4], train=row[5]) for row in cur.fetchall()]
+    return json.dumps([{"_id": i["id"], "commuteTime": i["commute"], "comment": i["comment"], "date": i["timestamp"], "trip": i["trip"], "train": i["train"]} for i in entries])
 
 
 @app.route('/commutelog')
@@ -88,8 +88,8 @@ def commutelog():
 def commuteupdate():
     if not session.get('logged_in'):
         abort(401)
-    g.db.execute('INSERT INTO commute (commuteTime, comment,trip) VALUES (?, ?,?)',
-                 [request.form['commuteTime'], request.form['comment'], request.form['trip']])
+    g.db.execute('INSERT INTO commute (commuteTime, comment,trip) VALUES (?, ?,?,?)',
+                 [request.form['commuteTime'], request.form['comment'], request.form['trip'], request.form['train']])
     g.db.commit()
     flash('New entry was successfully posted')
     return redirect(url_for('commute'))

@@ -70,7 +70,7 @@ def laws(filename):
 
 @app.route('/commute')
 def commute():
-    return render_template('commute.html', entries=entries)
+    pass
 
 @app.route('/commutedata')
 def data():
@@ -79,10 +79,9 @@ def data():
     return json.dumps([{"_id": i["id"], "commuteTime": i["commute"], "comment": i["comment"], "date": i["timestamp"]} for i in entries])
 
 
-
 @app.route('/commutelog')
 def commutelog():
-    pass
+    return render_template('commute.html')
 
 @app.route('/commuteupdate')
 def commuteupdate():

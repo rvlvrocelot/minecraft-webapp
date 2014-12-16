@@ -83,7 +83,7 @@ def data():
 def commutelog():
     return render_template('commute.html')
 
-@app.route('/commuteupdate')
+@app.route('/commuteupdate', methods=['POST'])
 def commuteupdate():
     if not session.get('logged_in'):
         abort(401)

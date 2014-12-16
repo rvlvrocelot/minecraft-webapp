@@ -88,7 +88,7 @@ def commutelog():
 def commuteupdate():
     if not session.get('logged_in'):
         abort(401)
-    g.db.execute('INSERT INTO commute (commuteTime, comment,trip) VALUES (?, ?,?,?)',
+    g.db.execute('INSERT INTO commute (commuteTime, comment,trip,train) VALUES (?, ?,?,?)',
                  [request.form['commuteTime'], request.form['comment'], request.form['trip'], request.form['train']])
     g.db.commit()
     flash('New entry was successfully posted')

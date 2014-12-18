@@ -17,7 +17,7 @@
 					
 					
 	var bars = canvas.selectAll("rect")
-					.data("/commutedata")
+					.data(data)
 					.enter()
 						.append("rect")
 						.attr("height",function(d) {return d.commuteTime * 300;})

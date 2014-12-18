@@ -71,7 +71,7 @@ def laws(filename):
 
 @app.route('/commute')
 def commute():
-    pass
+    return redirect(url_for('commutedata'))
 
 @app.route('/commutedata')
 def data():
@@ -88,7 +88,7 @@ def commutelog():
 def commuteupdate():
     if not session.get('logged_in'):
         abort(401)
-    g.db.execute('INSERT INTO commute (commuteTime, comment,trip,train) VALUES (?, ?,?,?)',
+    g.db.execute('INSERT INTO commute (commuteTime, comment,trip,train VALUES (?, ?,?,?)',
                  [request.form['commuteTime'], request.form['comment'], request.form['trip'], request.form['train']])
     g.db.commit()
     flash('New entry was successfully posted')

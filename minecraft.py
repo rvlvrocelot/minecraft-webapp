@@ -71,7 +71,7 @@ def laws(filename):
 
 @app.route('/commute')
 def commute():
-    return redirect(url_for('commutedata'))
+    return render_template('commuteShow.html')
 
 @app.route('/commutedata')
 def data():

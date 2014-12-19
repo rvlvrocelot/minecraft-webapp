@@ -7,9 +7,9 @@
 <body>
 	<script>
 
-	commutedata = [{"comment": "Track fire", "train": "6", "commuteTime": 1.0, "date": "2014-12-16 22:27:34", "_id": 1, "trip": "work"}, {"comment": "A very smelly, very soggy dude sat next to me on an ultra-packed train :(", "train": "6", "commuteTime": 0.85, "date": "2014-12-16 23:58:13", "_id": 2, "trip": "home"}, {"comment": "Minor delays at Grand central - 42nd st. Nothing too crazy", "train": "6", "commuteTime": 0.83, "date": "2014-12-17 14:00:58", "_id": 3, "trip": "work"}, {"comment": "Pretty good trip!", "train": "M", "commuteTime": 0.66, "date": "2014-12-18 01:32:36", "_id": 4, "trip": "home"}, {"comment": "No complaints ", "train": "6", "commuteTime": 0.75, "date": "2014-12-18 14:39:14", "_id": 5, "trip": "work"}]	
 	
-	d3.json(commutedata, function(data) {
+	
+	d3.json("/commutedata", function(data) {
 	
 
 	var canvas = d3.select("body")
@@ -19,7 +19,7 @@
 					
 					
 	var bars = canvas.selectAll("rect")
-					.data(commutedata)
+					.data(data)
 					.enter()
 						.append("rect")
 						.attr("height",function(d) {return d.commuteTime * 300;})

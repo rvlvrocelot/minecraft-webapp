@@ -74,7 +74,7 @@ def laws(filename):
 def commute():
     return render_template('commuteShow.html')
 
-@app.route('mattreactions')
+@app.route('/mattreactions')
 def mattreactions():
     randomimage = random.choice(os.listdir("/home/rvlvrocelot/minecraft-webapp/static/"))
     return render_template('matt.html', randomimage=randomimage)

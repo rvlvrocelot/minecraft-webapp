@@ -6,6 +6,7 @@ from flask import Flask, request, session, g, redirect, url_for, \
 from contextlib import closing
 from flask_bootstrap import Bootstrap
 import hashlib
+import os, random
 
 # configuration
 # the database is not in tmp on the deployed verson
@@ -72,6 +73,11 @@ def laws(filename):
 @app.route('/commute')
 def commute():
     return render_template('commuteShow.html')
+
+@app.route('mattreactions')
+def mattreactions():
+    randomimage = random.choice(os.listdir("/home/rvlvrocelot/minecraft-webapp/static/"))
+    return render_template('matt.html' randomimage=randomimage)
 
 @app.route('/commutedata')
 def data():

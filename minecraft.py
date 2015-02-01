@@ -77,7 +77,7 @@ def commute():
 @app.route('mattreactions')
 def mattreactions():
     randomimage = random.choice(os.listdir("/home/rvlvrocelot/minecraft-webapp/static/"))
-    return render_template('matt.html' randomimage=randomimage)
+    return render_template('matt.html', randomimage=randomimage)
 
 @app.route('/commutedata')
 def data():

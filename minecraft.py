@@ -100,6 +100,10 @@ def commuteupdate():
     flash('New entry was successfully posted')
     return redirect(url_for('commute'))
 
+@app.route('/liveleak.com')
+def liveleak():
+    return redirect('liveleak.html')
+
 
 #login and set the session name
 @app.route('/login', methods=['GET', 'POST'])

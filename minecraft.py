@@ -102,7 +102,7 @@ def commuteupdate():
 
 @app.route('/liveleak.com')
 def liveleak():
-    return render_template('liveleak.com.html')
+    return render_template('liveleak.html')
 
 
 #login and set the session name

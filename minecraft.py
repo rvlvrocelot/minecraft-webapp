@@ -100,9 +100,9 @@ def commuteupdate():
     flash('New entry was successfully posted')
     return redirect(url_for('commute'))
 
-@app.route('/liveleak.com')
-def liveleak():
-    return render_template('liveleak.html')
+@app.route('/paul')
+def paul():
+	return render_template('proof-of-concept.html')
 
 
 #login and set the session name

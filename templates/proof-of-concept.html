@@ -335,8 +335,8 @@
     last_time += 4 * params.n;  // to allow points to fade
     function add_next_data() {
       // change curr_time
+	  update_progress(curr_time, datetime_extent[1]);
       curr_time += 1;
-      update_progress(curr_time, datetime_extent[1]);
       // update current data slice in heatmap_data.data
       heatmap_data.data.forEach(function (element, array, index) {
         if (element.shown && element.val === 0) {

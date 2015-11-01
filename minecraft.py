@@ -10,7 +10,7 @@ import os, random
 
 # configuration
 # the database is not in tmp on the deployed verson
-DATABASE = '/home/rvlvrocelot/minecraft.db'
+DATABASE = '/home/rvlvrocelot/kdramaData.db'
 DEBUG = True
 SECRET_KEY = 'development key'
 USERNAME = 'admin'
@@ -89,6 +89,37 @@ def data():
 @app.route('/commutelog')
 def commutelog():
     return render_template('commute.html')
+
+@app.route('/drama/<int:date>')
+def drama(date):
+    cur = c.execute(''' SELECT  * FROM drama d WHERE startDate < ?
+                ''',(date,))
+    entries = [dict(id=row[0], name=row[1],  synopsis=row[2], date=row[3], image = row[4]) for row in cur.fetchall()]
+
+    finalArray = []
+
+    for entry in entries:
+        id = entry["id"]
+        name = entry["name"]
+        synopsis =  entry["synopsis"]
+        date =  entry["date"]
+        image = entry["image"]
+    
+        cast = []
+        genre = []
+    
+        cur = g.db.execute(''' SELECT  * FROM genre g
+                        WHERE dramaID = ?''',(id,))
+        genre = [row[1] for row in cur.fetchall()]
+    
+        cur = g.db.execute(''' SELECT  * FROM cast c
+                        WHERE dramaID = ?''',(id,))
+        cast = [row[1] for row in cur.fetchall()] 
+        finalArray.append({'id':id,'name':name,'synopsis':synopsis,'date':date,'cast':cast,'genre':genre,'image':image})
+    
+    return json.dumps(finalArray)
+
+
 
 @app.route('/commuteupdate', methods=['POST'])
 def commuteupdate():

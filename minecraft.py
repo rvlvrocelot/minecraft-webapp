@@ -51,9 +51,10 @@ def teardown_request(exception):
 #Load the homepage where the announcements are displayed
 @app.route('/')
 def home():
-    cur = g.db.execute('SELECT announcement, details, announcements.id, announcements.user, b.nation, Timestamp FROM announcements JOIN users as b ON announcements.user = b.username ORDER BY announcements.id DESC LIMIT 5')
-    entries = [dict(announcement=row[0], details=row[1],  key=row[2], user = row[3], nation = row[4], timestamp = row[5]) for row in cur.fetchall()]
-    return render_template('home.html', entries=entries)
+    #cur = g.db.execute('SELECT announcement, details, announcements.id, announcements.user, b.nation, Timestamp FROM announcements JOIN users as b ON announcements.user = b.username ORDER BY announcements.id DESC LIMIT 5')
+    #entries = [dict(announcement=row[0], details=row[1],  key=row[2], user = row[3], nation = row[4], timestamp = row[5]) for row in cur.fetchall()]
+    #return render_template('home.html', entries=entries)
+    return None
 
 #Add an announcement to the homepage
 @app.route('/add_announcement', methods=['POST'])

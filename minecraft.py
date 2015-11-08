@@ -92,7 +92,7 @@ def commutelog():
 
 @app.route('/drama/<int:date>')
 def drama(date):
-    cur = c.execute(''' SELECT  * FROM drama d WHERE startDate < ?
+    cur = g.db.execute(''' SELECT  * FROM drama d WHERE startDate < ?
                 ''',(date,))
     entries = [dict(id=row[0], name=row[1],  synopsis=row[2], date=row[3], image = row[4]) for row in cur.fetchall()]
 

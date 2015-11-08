@@ -95,7 +95,7 @@ def commutelog():
 def drama(date):
     cur = g.db.execute(''' SELECT  * FROM drama d WHERE startDate < ?
                 ''',(date,))
-    entries = [dict(id=row[0], name=row[1],  synopsis=row[2], date=row[3], image = row[4]) for row in cur.fetchall()]
+    entries = [dict(id=row[0], name=row[1],  synopsis=row[2], date=row[3], image = row[4], rating = row[5]) for row in cur.fetchall()]
 
     finalArray = []
 

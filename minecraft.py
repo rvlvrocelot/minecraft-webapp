@@ -49,23 +49,23 @@ def teardown_request(exception):
         db.close()
 
 #Load the homepage where the announcements are displayed
-@app.route('/')
-def home():
-    #cur = g.db.execute('SELECT announcement, details, announcements.id, announcements.user, b.nation, Timestamp FROM announcements JOIN users as b ON announcements.user = b.username ORDER BY announcements.id DESC LIMIT 5')
-    #entries = [dict(announcement=row[0], details=row[1],  key=row[2], user = row[3], nation = row[4], timestamp = row[5]) for row in cur.fetchall()]
-    #return render_template('home.html', entries=entries)
-    return render_template('commuteShow.html')
+# @app.route('/')
+# def home():
+#     #cur = g.db.execute('SELECT announcement, details, announcements.id, announcements.user, b.nation, Timestamp FROM announcements JOIN users as b ON announcements.user = b.username ORDER BY announcements.id DESC LIMIT 5')
+#     #entries = [dict(announcement=row[0], details=row[1],  key=row[2], user = row[3], nation = row[4], timestamp = row[5]) for row in cur.fetchall()]
+#     #return render_template('home.html', entries=entries)
+#     return render_template('commuteShow.html')
 
-#Add an announcement to the homepage
-@app.route('/add_announcement', methods=['POST'])
-def add_announcement():
-    if not session.get('logged_in'):
-        abort(401)
-    g.db.execute('INSERT INTO announcements (announcement, details,user) VALUES (?, ?,?)',
-                 [request.form['announcement'], request.form['details'], request.form['user']])
-    g.db.commit()
-    flash('New entry was successfully posted')
-    return redirect(url_for('home'))
+# #Add an announcement to the homepage
+# @app.route('/add_announcement', methods=['POST'])
+# def add_announcement():
+#     if not session.get('logged_in'):
+#         abort(401)
+#     g.db.execute('INSERT INTO announcements (announcement, details,user) VALUES (?, ?,?)',
+#                  [request.form['announcement'], request.form['details'], request.form['user']])
+#     g.db.commit()
+#     flash('New entry was successfully posted')
+#     return redirect(url_for('home'))
 
 @app.route('/laws/<path:filename>')
 def laws(filename):

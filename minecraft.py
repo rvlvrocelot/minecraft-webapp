@@ -104,6 +104,7 @@ def drama(date):
         synopsis =  entry["synopsis"]
         date =  entry["date"]
         image = entry["image"]
+        rating = entry["rating"]
     
         cast = []
         genre = []
@@ -115,7 +116,7 @@ def drama(date):
         cur = g.db.execute(''' SELECT  * FROM cast c
                         WHERE dramaID = ?''',(id,))
         cast = [row[1] for row in cur.fetchall()] 
-        finalArray.append({'id':id,'name':name,'synopsis':synopsis,'date':date,'cast':cast,'genre':genre,'image':image})
+        finalArray.append({'id':id,'name':name,'synopsis':synopsis,'date':date,'cast':cast,'genre':genre,'image':image,'rating':rating})
     
     return json.dumps(finalArray)
 
